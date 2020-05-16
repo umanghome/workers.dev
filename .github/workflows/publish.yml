@@ -19,7 +19,7 @@ jobs:
           node-version: '12'
 
       - name: Install packages
-        run: npm install && npm run bootstrap
+        run: npm install && npm run install-packages
 
       - name: Build
         run: npm run build
