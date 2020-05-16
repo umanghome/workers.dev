@@ -2,8 +2,8 @@
   "name": "root",
   "private": true,
   "dependencies": {
-    "lerna": "^3.21.0",
-    "wrangler": "0.0.2"
+    "@cloudflare/wrangler": "^1.9.0",
+    "lerna": "^3.21.0"
   },
   "scripts": {
     "install-packages": "lerna exec -- npm install",
