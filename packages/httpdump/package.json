@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "httpdump",
+  "version": "1.0.0",
+  "description": "A template for kick starting a Cloudflare Workers project",
+  "main": "index.js",
+  "scripts": {
+    "publish": "wrangler publish",
+    "format": "prettier --write '**/*.{js,css,json,md}'"
+  },
+  "author": "Umang Galaiya <umang.galaiya@razorpay.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  }
+}
