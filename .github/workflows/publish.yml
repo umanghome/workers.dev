@@ -1,4 +1,4 @@
-name: Publish Workers
+name: Publish Cloudflare Workers
 
 on:
   push:
@@ -10,15 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     name: Publish
     steps:
-      - name: checkout
+      - name: git-checkout
         uses: actions/checkout@v2
 
-      - name: set up node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '12'
+      # - name: set up node
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: '12'
 
-      - name: Install packages
+      - name: Install all packages
         run: npm install && npm run install-packages
 
       - name: Build
