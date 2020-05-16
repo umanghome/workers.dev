@@ -19,10 +19,13 @@ jobs:
           node-version: '12'
 
       - name: Install packages
-        run: npm install
+        run: npm install && npm run bootstrap
+
+      - name: Build
+        run: npm run build
     
       - name: Publish
         env:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-        run: npm run bootstrap && npm run build && npm run publish
+        run: npm run publish
