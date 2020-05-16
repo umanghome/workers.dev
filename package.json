@@ -4,5 +4,9 @@
   "dependencies": {
     "lerna": "^3.21.0",
     "wrangler": "0.0.2"
+  },
+  "scripts": {
+    "build": "lerna run build",
+    "publish": "lerna run publish"
   }
 }

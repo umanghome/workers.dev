@@ -25,4 +25,4 @@ jobs:
         env:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-        run: lerna run build && lerna run publish
+        run: npm run build && npm run publish
