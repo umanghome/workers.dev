@@ -1,0 +1,28 @@
+name: Publish Workers
+
+on:
+  push:
+    branches:
+      - workflow
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    name: Publish
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: set up node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+
+      - name: Install packages
+        run: npm install
+    
+      - name: Publish
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: lerna run build && lerna run publish
