@@ -1,10 +1,12 @@
+const METHODS = 'GET, HEAD, POST, OPTIONS, PUT, DELETE, PATCH';
+
 // We support the GET, POST, HEAD, and OPTIONS methods from any origin,
 // and accept the Content-Type header on requests. These headers must be
 // present on all responses to all CORS requests. In practice, this means
 // all responses to OPTIONS requests.
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET, HEAD, POST, OPTIONS',
+  'Access-Control-Allow-Methods': METHODS,
   'Access-Control-Allow-Headers': 'Content-Type',
 }
 
@@ -43,28 +45,12 @@ async function handleCORS(request) {
 }
 
 function handleOptions(request) {
-  // Make sure the necesssary headers are present
-  // for this to be a valid pre-flight request
-  if (
-    request.headers.get('Origin') !== null &&
-    request.headers.get('Access-Control-Request-Method') !== null &&
-    request.headers.get('Access-Control-Request-Headers') !== null
-  ) {
-    // Handle CORS pre-flight request.
-    // If you want to check the requested method + headers
-    // you can do that here.
-    return new Response(null, {
-      headers: corsHeaders,
-    });
-  } else {
-    // Handle standard OPTIONS request.
-    // If you want to allow other HTTP Methods, you can do that here.
-    return new Response(null, {
-      headers: {
-        Allow: 'GET, HEAD, POST, OPTIONS, PUT, DELETE, PATCH',
-      },
-    });
-  }
+  return new Response(null, {
+    headers: {
+      ...corsHeaders,
+      Allow: METHODS
+    }
+  });
 }
 
 addEventListener('fetch', (event) => {
