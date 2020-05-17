@@ -23,12 +23,8 @@ async function handleCORS(request) {
     })
   }
 
-  // Rewrite request to point to API url. This also makes the request mutable
-  // so we can add the correct Origin header to make the API server think
-  // that this request isn't cross-site.
+  // Rewrite request to point to API url.
   request = new Request(apiurl, request);
-
-  request.headers.set('Origin', new URL(apiurl).origin);
 
   let response = await fetch(request);
 
@@ -36,7 +32,7 @@ async function handleCORS(request) {
   response = new Response(response.body, response);
 
   // Set CORS headers
-  response.headers.set('Access-Control-Allow-Origin', url.origin);
+  response.headers.set('Access-Control-Allow-Origin', '*');
 
   // Append to/Add Vary header so browser will cache response correctly
   response.headers.append('Vary', 'Origin');
