@@ -12,6 +12,15 @@ async function handleCORS(request) {
   const url = new URL(request.url);
   const apiurl = url.searchParams.get('url'); // This does decodeURIComponent internally
 
+  if (!apiurl) {
+    return new Response(JSON.stringify({ error: 'url is expected' }), {
+      headers: {
+        'content-type': 'application/json;charset=UTF-8',
+      },
+      statusCode: 400,
+    })
+  }
+
   // Rewrite request to point to API url. This also makes the request mutable
   // so we can add the correct Origin header to make the API server think
   // that this request isn't cross-site.
